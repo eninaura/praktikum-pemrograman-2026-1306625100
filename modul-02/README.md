@@ -1,16 +1,37 @@
-# Modul [02] - [Nama Topik Modul]
+# Modul [02] - [Mencari faktor bilangan]
 
-**Nama:** [Nama Mahasiswa]  
-**NIM:** [NIM Mahasiswa]  
-**Kelas:** [Kelas/Kelompok]  
+**Nama:** [Eni Naura Sari girsang]  
+**NIM:** [1306625100]  
+**Kelas:** [Fisika c]  
 
 ---
 
 ## 1. Problem Statement
-> Jelaskan latar belakang masalah, parameter yang diketahui, serta tujuan dari praktikum atau pemodelan pada modul ini.
+> Mencari faktor dari sebuah bilangan
 
 ## 2. Mathematical Equation
-> Tuliskan persamaan fisika/matematika, rumus numerik, atau penurunan rumus yang digunakan dalam modul ini menggunakan format LaTeX.
+> n mod i=0
+> 0,1 ≤ i ≤ n
+> f (15) ={1,3,5,15}
 
 ## 3. Algorithm
-> Tuliskan langkah-langkah logika penyelesaian masalah secara sistematis sebelum diimplementasikan ke dalam kode Python (`main.py`).
+> 1. Mulai
+2. print"pemrograman faktor Bilangan"
+3 .print "Nama: Eni Naura Sari Girsang"
+4 .print "Nim : 1306625100"
+5. Menggunakan pemrograman while true
+6. Menginput sebuah bilangan (a)
+7. Menginisiasikan hasil = []
+8. Menggunakan pemrograman "if”a>=100
+   8.1)Jika benar, maka cetak "Error"
+   8.1.2) break
+   8.2) Jika salah,lanjut maka lanjut ke   tahap 8.2.1
+   8.2.1.1) jika benar.maka catak selesqi
+   8.2.1.1) treak .
+   8.2.1.2)jika salah), maka lanjut ke tahan 9
+9. Mengiterasikan menggunakan porbin range (1,a+1)
+   9.1) Menggunakan pemrograman "If”a % 10==0
+   9.1.1) Jika benar menginistasikan program hasıl(b)
+   9.2 jika salah, lanjut ke tahap 10
+10. Cetak hasil
+11. Selesai.
