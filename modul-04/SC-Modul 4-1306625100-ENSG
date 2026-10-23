@@ -1,0 +1,117 @@
+import pandas as pd
+
+
+def hitung_grade(na):
+    if na >= 86:
+        return "A"
+    elif na >= 81:
+        return "A-"
+    elif na >= 76:
+        return "B+"
+    elif na >= 71:
+        return "B"
+    elif na >= 66:
+        return "B-"
+    elif na >= 61:
+        return "C+"
+    elif na >= 56:
+        return "C"
+    else:
+        return "TL"
+
+
+def main():
+    print("Program Grading")
+    print("Nama : Eni Naura Sari Girsang")
+    print("NIM  : 210511032")
+    print("\nLAPORAN GRADING MAHASISWA\n")
+
+    # Membaca file Excel
+    try:
+        df = pd.read_excel("DataNilai.xlsx")
+    except FileNotFoundError:
+        print("Error: File DataNilai.xlsx tidak ditemukan.")
+        print("Pastikan file Excel berada di folder yang sama dengan program.")
+        return
+    except ImportError:
+        print("Modul pembaca Excel belum terpasang.")
+        print("Jalankan perintah: pip install openpyxl")
+        return
+
+    # Menentukan kolom berdasarkan urutan di Excel
+    if len(df.columns) < 5:
+        print("Error: File Excel harus memiliki minimal 5 kolom.")
+        return
+
+    col_nama = df.columns[0]
+    col_lain2 = df.columns[1]
+    col_nim = df.columns[2]
+    col_uts = df.columns[3]
+    col_uas = df.columns[4]
+
+    # Inisialisasi rekapitulasi nilai
+    rekap = {
+        "A": 0,
+        "A-": 0,
+        "B+": 0,
+        "B": 0,
+        "B-": 0,
+        "C+": 0,
+        "C": 0,
+        "TL": 0
+    }
+
+    print("-" * 60)
+    print(f"{'No':<4} {'Nama Mahasiswa':<25} "
+          f"{'Nilai Akhir':<12} {'Grade':<5}")
+    print("-" * 60)
+
+    i = 0
+    total_mahasiswa = len(df)
+
+    while i < total_mahasiswa:
+        row = df.iloc[i]
+
+        nama_mahasiswa = str(row[col_nama])
+
+        # Mengubah nilai menjadi angka
+        try:
+            n_lain2 = float(row[col_lain2])
+            n_uts = float(row[col_uts])
+            n_uas = float(row[col_uas])
+        except (ValueError, TypeError):
+            print(f"Data nilai mahasiswa baris {i + 2} tidak valid.")
+            i += 1
+            continue
+
+        # Menghitung nilai akhir
+        nilai_akhir = (
+            0.30 * n_lain2
+            + 0.35 * n_uts
+            + 0.35 * n_uas
+        )
+
+        # Menentukan grade dan menghitung jumlahnya
+        grade = hitung_grade(nilai_akhir)
+        rekap[grade] += 1
+
+        print(
+            f"{i + 1:<4} {nama_mahasiswa:<25} "
+            f"{nilai_akhir:<12.2f} {grade:<5}"
+        )
+
+        i += 1
+
+    # Menampilkan rekapitulasi setelah perulangan selesai
+    print("-" * 60)
+    print("\nREKAPITULASI NILAI")
+
+    for grade, jumlah in rekap.items():
+        print(f"Grade {grade:<3} = {jumlah}")
+
+    print(f"Total Mahasiswa = {total_mahasiswa}")
+    print("\n* Selesai *")
+
+
+if __name__ == "__main__":
+    main()
